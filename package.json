@@ -1,17 +1,17 @@
 {
-    "name": "promise-by-need",
+    "name": "state-monad-ts",
     "version": "1.0.0",
-    "description": "Lazy evaluated promises",
+    "description": "state monad in typescript",
     "main": "dist/index.js",
     "type": "dist/index.d.ts",
-    "homepage": "https://github.com/ailrk/promise-by-need",
+    "homepage": "https://github.com/ailrk/state-monad-ts",
     "scripts": {
         "test": "npm run build && jest",
         "build": "rimraf dist && tsc"
     },
     "keywords": [
-        "promise",
-        "lazy"
+        "monad",
+        "state"
     ],
     "jest": {
         "modulePaths": [
