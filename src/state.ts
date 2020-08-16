@@ -1,11 +1,16 @@
 type RunState<S, A> = (s: S) => [A, S];
-type Unit = void;
+type Unit = null;
+const unit: Unit = null;
 
-class State<S, A> {
+export class State<S, A> {
 
   runState: RunState<S, A>;
+  execState: (s: S) => S;
+  evalState: (s: S) => A;
   constructor(runState: RunState<S, A>) {
     this.runState = runState;
+    this.execState = (s: S) => this.runState(s)[1];
+    this.evalState = (s: S) => this.runState(s)[0];
   }
 
   map<B>(f: (p: A) => B): State<S, B> {
@@ -41,5 +46,34 @@ class State<S, A> {
     return new State(runState);
   }
 
+  get() {
+    return this
+  }
+
+  put(s: S) {
+    return new State(() => [unit, s]);
+  }
+
+  modify(f: (s: S) => S) {
+    return new State<S, Unit>(s => [unit, f(s)]);
+  }
+
 }
+
+
+const state = new State<number, number>((s) => {
+  return [s + 1, s / 2];
+});
+
+// state.bind(a => {
+//   return new State(s => {
+//     return [s + 10, a + 100];
+//   })
+// }).bind(a => {
+//   return new State(s => {
+
+//   })
+// }).get(s => {
+
+// })
 
