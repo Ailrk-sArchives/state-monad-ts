@@ -34,15 +34,19 @@ it("ap", () => {
 
 it("bind", () => {
   const f = (a: number) => new State<string, boolean>(s => {
-    return [Number.parseInt(s) <= 20, s + "1"];
+    return [Number.parseInt(s) + a <= 20, s + "1"];
+  });
+  const g = (a: number) => new State<string, number>(s => {
+    return [Number.parseInt(s) + a + 20, s + "2"];
   });
   const state = new State<string, number>(s => {
     return [Number.parseInt(s), s + "0"];
   });
 
-  const [a, s] = state.bind(f).runState("1");
+  const [a, s] = state.bind(g).bind(f).runState("1");
+
   expect(a).toBe(true);
-  expect(s).toBe("101");
+  expect(s).toBe("1021");
 })
 
 it("get", () => {
@@ -77,16 +81,3 @@ it("modify", () => {
 
 })
 
-it("then", async () => {
-  const f = async () => {
-    const state = new State<string, number>(s => {
-      return [Number.parseInt(s), s + "0"];
-    });
-    const p = await state.get();
-    await state.put("11");
-    await state.modify(s => s + "22");
-
-    const a = State.pure<string, number>(p);
-  }
-
-})
