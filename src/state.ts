@@ -47,7 +47,7 @@ export class State<S, A> {
   }
 
   get() {
-    return this
+    return this;
   }
 
   put(s: S) {
@@ -57,23 +57,4 @@ export class State<S, A> {
   modify(f: (s: S) => S) {
     return new State<S, Unit>(s => [unit, f(s)]);
   }
-
 }
-
-
-const state = new State<number, number>((s) => {
-  return [s + 1, s / 2];
-});
-
-// state.bind(a => {
-//   return new State(s => {
-//     return [s + 10, a + 100];
-//   })
-// }).bind(a => {
-//   return new State(s => {
-
-//   })
-// }).get(s => {
-
-// })
-
