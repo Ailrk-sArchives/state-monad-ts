@@ -1,6 +1,6 @@
-type RunState<S, A> = (s: S) => [A, S];
-type Unit = null;
-const unit: Unit = null;
+export type RunState<S, A> = (s: S) => [A, S];
+export type Unit = null;
+export const unit: Unit = null;
 
 export class State<S, A> implements PromiseLike<A> {
 

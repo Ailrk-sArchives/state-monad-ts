@@ -1,6 +1,6 @@
 {
     "name": "state-monad-ts",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "state monad in typescript",
     "main": "dist/index.js",
     "type": "dist/index.d.ts",

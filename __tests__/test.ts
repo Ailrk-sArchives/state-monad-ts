@@ -45,7 +45,7 @@ it("bind", () => {
 
   const [a, s] = state.bind(g).bind(f).runState("1");
 
-  expect(a).toBe(true);
+  expect(a).toBe(false);
   expect(s).toBe("1021");
 })
 
