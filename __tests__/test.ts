@@ -73,6 +73,20 @@ it("modify", () => {
     return [Number.parseInt(s), s + "0"];
   });
   const s = state.modify(s => s + "0").execState("1");
-  expect(s).toBe("1");
+  expect(s).toBe("10");
+
+})
+
+it("then", async () => {
+  const f = async () => {
+    const state = new State<string, number>(s => {
+      return [Number.parseInt(s), s + "0"];
+    });
+    const p = await state.get();
+    await state.put("11");
+    await state.modify(s => s + "22");
+
+    const a = State.pure<string, number>(p);
+  }
 
 })

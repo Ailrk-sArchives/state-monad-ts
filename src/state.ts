@@ -2,7 +2,9 @@ type RunState<S, A> = (s: S) => [A, S];
 type Unit = null;
 const unit: Unit = null;
 
-export class State<S, A> {
+export class State<S, A> implements PromiseLike<A> {
+
+  readonly [Symbol.toStringTag] = "StateMoand";
 
   runState: RunState<S, A>;
   execState: (s: S) => S;
@@ -45,6 +47,8 @@ export class State<S, A> {
     }
     return new State(runState);
   }
+
+  then = this.bind;
 
   get() {
     return this;
