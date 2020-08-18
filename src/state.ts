@@ -2,7 +2,7 @@ export type RunState<S, A> = (s: S) => [A, S];
 export type Unit = null;
 export const unit: Unit = null;
 
-export class State<S, A> implements PromiseLike<A> {
+export class State<S, A> {
 
   readonly [Symbol.toStringTag] = "StateMoand";
 
