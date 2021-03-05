@@ -3,6 +3,8 @@ export type Unit = null;
 export const unit: Unit = null;
 
 export class State<S, A> {
+  declare readonly _F: S
+  declare readonly _A: A
 
   readonly [Symbol.toStringTag] = "StateMoand";
 
